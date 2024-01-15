@@ -22,6 +22,8 @@ def index():
     elif request.method == "POST":
         files = request.files.getlist("files[]")
         for file in files:
+            if not file.filename:
+                break
             filename_in = "static/media/from_users/" + file.filename
             filename_out = "static/media/rendered/" + "".join(file.filename.split(".")[:-1]) + "_" + \
                 file.filename.split(".")[-1] + ".png"
