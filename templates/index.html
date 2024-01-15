@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Syroi (WIP)</title>
+    <link rel="icon" href="/static/media/favicon.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+          crossorigin="anonymous">
+    <link href="/static/css/stylesheet.css" rel="stylesheet">
+</head>
+<body>
+    <h1 class="text-center mt-5">Syroi (WIP Build 15.01.2024)</h1>
+    <h2 class="text-center mb-5">Преобразователь необработанных файлов в PNG</h2>
+    <form class="text-center raw-form py-3" method="post" enctype="multipart/form-data">
+        <h3 class="text-center">Простой режим</h3>
+        <input class="my-3" id="files[]" name="files[]" multiple="multiple" type="file">
+        <input class="my-3" id="chunk" name="chunk" type="number" placeholder="Пикселей на чанк">
+        <input class="my-3" id="rows" name="rows" type="number" placeholder="Кол-во строк чанков">
+        <input class="my-3" id="offset" name="offset" type="number" placeholder="Смещение данных">
+        <button class="btn btn-primary my-3" id="upload" name="upload" type="submit">Преобразовать</button>
+    </form>
+    <form class="text-center raw-form py-3" method="post" enctype="multipart/form-data">
+        <h3 class="text-center">Режим NES</h3>
+        <input class="my-3" id="files_nes[]" name="files[]" multiple="multiple" type="file">
+        <input class="my-3" id="rows_nes" name="rows" type="number" placeholder="Кол-во строк чанков">
+        <input class="my-3" id="color1" name="color1" type="number" placeholder="Цвет 1 (HEX)">
+        <input class="my-3" id="color2" name="color2" type="number" placeholder="Цвет 2 (HEX)">
+        <input class="my-3" id="color3" name="color3" type="number" placeholder="Цвет 3 (HEX)">
+        <input class="my-3" id="color4" name="color4" type="number" placeholder="Цвет 4 (HEX)">
+        <button class="btn btn-primary my-3" id="upload_nes" name="upload_nes" type="submit">Преобразовать (режим NES)</button>
+    </form>
+    {% for image in images %}
+        <div class="d-flex justify-content-around m-5 p-3 raw-image">
+            <h3>{{ loop.index }}. {{ image[0] }}</h3><img src="/static/media/rendered/{{ image[1] }}" height="512">
+        </div>
+    {% endfor %}
+</body>
+</html>
